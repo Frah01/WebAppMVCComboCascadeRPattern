@@ -1,0 +1,65 @@
+﻿@model WebAppMVCComboCascadeEF.Models.CascadingModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome Combo Cascading Regione ==> Provincia ==> Comune</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br /><br />
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <label class="control-label">Regione:</label>
+        @Html.DropDownListFor(m => m.RegioneId, Model.comboListRegioni, "Please select regione", new { onchange = "document.forms[0].submit();" })
+        <br />
+        <br />
+        <label class="control-label">Provincia:</label>
+        @Html.DropDownListFor(m => m.ProvinciaId, Model.comboListaProvince, "Please select provincia", new { onchange = "document.forms[0].submit();", disabled = "disabled" })
+        <br />
+        <br />
+        <label class="control-label">Comune:</label>
+        @Html.DropDownListFor(m => m.ComuneId, Model.comboListaComuni, "Please select comune", new { disabled = "disabled" })
+        <br />
+        <br />
+        <input type="submit" value="Submit" />
+        <br />
+        <br />
+        <div id="divIdResult">
+        </div>
+    }
+    <br />
+    // COUNTRY === REGIONE
+    <br />
+    // STATES === PROVINCIA
+    <br />
+    // CITIES === COMUNI
+    <br />
+    @* <script src="~/Scripts/jquery-1.10.2.min.js"></script> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($("#ProvinciaId option").length > 1) {
+                $("#ProvinciaId").removeAttr("disabled");
+            }
+
+            if ($("#ComuneId option").length > 1) {
+                $("#ComuneId").removeAttr("disabled");
+            }
+
+            if ($("#RegioneId").val() != "" && $("#ProvinciaId").val() != "" && $("#ComuneId").val() != "") {
+                var message = "L'utente ha fatto le seguenti scelte:\nRegione: " + $("#RegioneId option:selected").text();
+                message += "\nProvincia: " + $("#ProvinciaId option:selected").text();
+                message += "\nComune: " + $("#ComuneId option:selected").text();
+
+                if ($("#divIdResult").length == 1) {
+                    // alert(message);
+                    $('<pre style="font-family: system-ui;font-size: 16px">').text(message).appendTo($('#divIdResult'));
+                    // N.B. SOLO CON '<pre>' VA A CAPO CORRETTAMENTE
+                    // https://coderanch.com/t/705514/languages/Newline-character-doesn-render-browser
+                    // var divRes = document.getElementById("divIdResult");
+                    // divRes.innerHTML = message;
+                }
+            }
+        });
+    </script>
+</div>
