@@ -9,11 +9,11 @@ namespace CLCommon.Repository
     // https://medium.com/@kerimkkara/implementing-the-repository-pattern-in-c-and-net-5fdd91950485
     public interface IRepositoryAsync<T>
     {
-        Task<T> GetByIdAsync(int Id);
+        //Task<T> GetByIdAsync(int Id);
 
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(string includeProperties);
 
-        Task AddSync(T entity);
+        Task AddAsync(T entity);
 
         Task<Boolean> UpdateAsync(T entity);
         Task<Boolean> DeleteAsync(T entity);

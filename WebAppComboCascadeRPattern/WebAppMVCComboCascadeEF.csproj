@@ -22,11 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Comune\Create.cshtml" />
+    <None Include="Views\Comune\Delete.cshtml" />
+    <None Include="Views\Comune\Details.cshtml" />
+    <None Include="Views\Comune\Edit.cshtml" />
     <None Include="Views\Comune\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>

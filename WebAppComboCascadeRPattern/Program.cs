@@ -25,13 +25,19 @@ builder.Host.UseSerilog(logger);
 
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+// INSTALLARE RAZOR RUNTIMECOMPILATION
+https://www.reddit.com/r/dotnet/comments/14zd7zp/brand_new_default_aspnet_core_mvc_8_project/
+// A solution I found was installing the Nuget Package "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
+// and then in my Program.cs I appended builder.Services.AddControllersWithViews()
 
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // ADD ENTITY FRAMEWORK
 builder.Services.AddDbContext<CorsoAcademyContext>(
     );
 
-// builder.Services.AddScoped<IRepositoryAsync, ComuneService>();
+//builder.Services.AddSingleton<IRepositoryAsync<TRegione>, EntityFrameworkRepositoryAsync<TComune>>();
+//builder.Services.AddSingleton<IRepositoryAsync<TProvincia>, EntityFrameworkRepositoryAsync<TComune>>();
+builder.Services.AddSingleton<IRepositoryAsync<TComune>, EntityFrameworkRepositoryAsync<TComune>>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

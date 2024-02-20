@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CLCommon.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,24 +14,25 @@ namespace CLCommon.Repository
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public EntityFrameworkRepositoryAsync(DbContext context)
+        public EntityFrameworkRepositoryAsync()
         {
-            _context = context;
+            _context = new CorsoAcademyContext();
             _dbSet = _context.Set<T>();
         }
-        public async Task<T> GetByIdAsync(int Id)
-        {
+        /* public async Task<T> GetByIdAsync(int Id, string includeProperties)
+         {
+             var listElements = _dbSet.Include(includeProperties).ToListAsync().Result.Select(T,);
+             var element = listElements.Result.Find(x => x.Id.GetType() == id);
+             return element.Result;
+         }*/
 
-            return await _dbSet.FindAsync(Id);
+        public async Task<IEnumerable<T>> GetAllAsync(string includeProperties)
+        {
+            return await _dbSet.Include(includeProperties).ToListAsync();
+
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _dbSet.ToListAsync();
-
-        }
-
-        public async Task AddSync(T entity)
+        public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -59,8 +62,8 @@ namespace CLCommon.Repository
                 // _logger.LogError(sErr);
             }
 
-                return isUpdated;
-           
+            return isUpdated;
+
         }
 
         public async Task<Boolean> DeleteAsync(T entity)

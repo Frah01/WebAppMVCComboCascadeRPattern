@@ -15,7 +15,7 @@ namespace WebAppMVCComboCascadeEF.Controllers
         private readonly CorsoAcademyContext _context;
         private readonly IRepositoryAsync<TComune> _comuneRepAsync;
         private EntityFrameworkRepositoryAsync<TComune> _comuneRep;
-        
+
 
         public ComuneController(CorsoAcademyContext context, IRepositoryAsync<TComune> comuneRepAsync)
         {
@@ -26,10 +26,10 @@ namespace WebAppMVCComboCascadeEF.Controllers
         // GET: Comune
         public async Task<IActionResult> Index()
         {
-
-            _comuneRep = new EntityFrameworkRepositoryAsync<TComune>(_context);
-            List<TComune> listComuni = (List<TComune>)await _comuneRep.GetAllAsync();
-            return View(listComuni);
+            string includeProperties = "IdProvinciaNavigation";
+            _comuneRep = new EntityFrameworkRepositoryAsync<TComune>();
+            List<TComune> listComuni = (List<TComune>)await _comuneRep.GetAllAsync(includeProperties);
+            return View(listComuni.ToList());
 
         }
 
@@ -41,9 +41,14 @@ namespace WebAppMVCComboCascadeEF.Controllers
                 return NotFound();
             }
 
-            var tComune = await _context.TComunes
+            string includeProperties = "IdProvinciaNavigation";
+            _comuneRep = new EntityFrameworkRepositoryAsync<TComune>();
+            List<TComune> listComuni = (List<TComune>)await _comuneRep.GetAllAsync(includeProperties);
+            TComune tComune = listComuni.FirstOrDefault(m => m.Id == id);
+
+            /*var tComune = await _context.TComunes
                 .Include(t => t.IdProvinciaNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);*/
             if (tComune == null)
             {
                 return NotFound();
@@ -66,14 +71,13 @@ namespace WebAppMVCComboCascadeEF.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,IdProvincia,NumAbitanti")] TComune tComune)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(tComune);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _comuneRep = new EntityFrameworkRepositoryAsync<TComune>();
+                await _comuneRep.AddAsync(tComune);
             }
-            ViewData["IdProvincia"] = new SelectList(_context.TProvincia, "Id", "Nome", tComune.IdProvincia);
-            return View(tComune);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Comune/Edit/5
@@ -83,13 +87,16 @@ namespace WebAppMVCComboCascadeEF.Controllers
             {
                 return NotFound();
             }
-
-            var tComune = await _context.TComunes.FindAsync(id);
+            string includeProperties = "IdProvinciaNavigation";
+            _comuneRep = new EntityFrameworkRepositoryAsync<TComune>();
+            List<TComune> listComuni = (List<TComune>)await _comuneRep.GetAllAsync(includeProperties);
+            TComune tComune = listComuni.FirstOrDefault(m => m.Id == id);
+            /* var tComune = await _context.TComunes.FindAsync(id);*/
             if (tComune == null)
             {
                 return NotFound();
             }
-            ViewData["IdProvincia"] = new SelectList(_context.TProvincia, "Id", "Nome", tComune.IdProvincia);
+            /* ViewData["IdProvincia"] = new SelectList(_context.TProvincia, "Id", "Nome", tComune.IdProvincia);*/
             return View(tComune);
         }
 
