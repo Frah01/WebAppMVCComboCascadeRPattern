@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLBuisnessLayer", "..\CLBui
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLDataLayer", "..\CLDataLayer\CLDataLayer.csproj", "{E898E5C7-91BC-42A3-A981-7BA503189A8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLCommon", "..\CLCommon\CLCommon.csproj", "{1026FE4E-12CA-4EB7-BDE8-DD2EC6563C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLCommon", "..\CLCommon\CLCommon.csproj", "{1026FE4E-12CA-4EB7-BDE8-DD2EC6563C72}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabaseCorsoAcademy", "..\DatabaseCorsoAcademy\DatabaseCorsoAcademy.sqlproj", "{46DC380B-95C9-40EF-B365-31ADC5420906}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestWebAppComboCascadeRPattern", "..\NUnitTestWebAppComboCascadeRPattern\NUnitTestWebAppComboCascadeRPattern.csproj", "{1441DD7D-5A35-4653-80C3-3A3B76F96CC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,16 @@ Global
 		{1026FE4E-12CA-4EB7-BDE8-DD2EC6563C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1026FE4E-12CA-4EB7-BDE8-DD2EC6563C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1026FE4E-12CA-4EB7-BDE8-DD2EC6563C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DC380B-95C9-40EF-B365-31ADC5420906}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1441DD7D-5A35-4653-80C3-3A3B76F96CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1441DD7D-5A35-4653-80C3-3A3B76F96CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1441DD7D-5A35-4653-80C3-3A3B76F96CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1441DD7D-5A35-4653-80C3-3A3B76F96CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

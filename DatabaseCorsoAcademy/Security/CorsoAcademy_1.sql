@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [CorsoAcademy]
+    WITH PASSWORD = N'PevbYlFM|oztHq{ezg?xpzefmsFT7_&#$!~<:uuo{|Nt mvn', SID = 0x4AC4E9C86200AE4FA872000CE15FB678, DEFAULT_LANGUAGE = [Italiano], CHECK_POLICY = OFF;
+

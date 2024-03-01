@@ -143,10 +143,10 @@ namespace WebAppMVCComboCascadeEF.Controllers
             {
                 return NotFound();
             }
-
-            var tComune = await _context.TComunes
-                .Include(t => t.IdProvinciaNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            string includeProperties = "IdProvinciaNavigation";
+            _comuneRep = new EntityFrameworkRepositoryAsync<TComune>();
+            List<TComune> listComuni = (List<TComune>)await _comuneRep.GetAllAsync(includeProperties);
+            TComune tComune = listComuni.FirstOrDefault(m => m.Id == id);
             if (tComune == null)
             {
                 return NotFound();
